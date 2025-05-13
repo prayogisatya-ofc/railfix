@@ -10,17 +10,28 @@ class LocationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $query = Location::query();
 
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+
+        $locations = $query->latest()->paginate(10);
+
+        return view('lokasi.index', [
+            'locations' => $locations,
+            'search' => $request->input('search'),
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('lokasi.create');
     }
 
     /**
@@ -28,7 +39,13 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Location::create($request->only('name'));
+
+        return redirect()->route('lokasi.index')->with('success', 'Location created successfully.');
     }
 
     /**
@@ -44,7 +61,9 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        //
+        return view('lokasi.edit', [
+            'location' => $location
+        ]);
     }
 
     /**
@@ -52,7 +71,13 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $location->update($request->only('name'));
+
+        return redirect()->route('lokasi.index')->with('success', 'Location updated successfully.');
     }
 
     /**
@@ -60,6 +85,8 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        $location->delete();
+
+        return redirect()->route('lokasi.index')->with('success', 'Location deleted successfully.');
     }
 }
