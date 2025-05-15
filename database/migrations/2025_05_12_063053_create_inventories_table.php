@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->string('name');
-            $table->foreignId('location_id')->constrained('locations');
+            $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
             $table->string('serial_number');
             $table->date('date_in');
             $table->date('date_out')->nullable();

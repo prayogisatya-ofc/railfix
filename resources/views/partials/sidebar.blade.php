@@ -20,7 +20,7 @@
                     <i class="ti ti-dashboard"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="{{ asset('elements/bc_typography.html') }}" class="pc-link">
+                    <a href="{{ route('location.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-map-pin"></i></span>
                         <span class="pc-mtext">Data Lokasi</span>
                     </a>
