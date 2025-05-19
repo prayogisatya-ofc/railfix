@@ -26,7 +26,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="{{ asset('elements/bc_color.html') }}" class="pc-link">
+                    <a href="{{ route('inventory.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-box"></i></span>
                         <span class="pc-mtext">Data Inventory</span>
                     </a>
