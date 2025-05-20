@@ -12,7 +12,7 @@ class InventoryController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $location = $request->input('location_id');
+        $location_id = $request->input('location_id');
         $start = $request->input('start_date');
         $end = $request->input('end_date');
 
@@ -22,24 +22,26 @@ class InventoryController extends Controller
             $query->where('name', 'like', '%' . $search . '%')->orWhere('code', 'like', '%' . $search . '%');
         }
 
-        if ($location) {
-            $query->where('location_id', $location);
+        if ($location_id) {
+            $query->where('location_id', $location_id);
         }
 
         if ($start && $end) {
             $query->whereDate('date_in', '>=', $start)->whereDate('date_in', '<=', $end);
         }
 
-        $inventories = $query->paginate(10)->latest();
+        $inventories = $query->latest()->paginate(10);
         $locations = Location::all();
 
-        return view('inventori.index', compact('inventories', 'locations'));
+        return view('inventory.index', compact(
+            'inventories', 'locations', 'search', 'location_id', 'start', 'end'
+        ));
     }
 
     public function create()
     {
         $locations = Location::all();
-        return view('inventori.create', compact('locations'));
+        return view('inventory.create', compact('locations'));
     }
 
     public function store(InventoryRequest $request)
@@ -48,13 +50,13 @@ class InventoryController extends Controller
 
         Inventory::create($request->all());
 
-        return redirect()->route('inventory.index')->with('success', 'Inventory created successfully.');
+        return redirect()->route('inventories.index')->with('success', 'Inventory created successfully.');
     }
 
     public function edit(Inventory $inventory)
     {
         $locations = Location::all();
-        return view('inventori.edit', compact('inventory', 'locations'));
+        return view('inventory.edit', compact('inventory', 'locations'));
     }
 
     public function update(InventoryRequest $request, Inventory $inventory)
@@ -63,13 +65,13 @@ class InventoryController extends Controller
 
         $inventory->update($request->all());
 
-        return redirect()->route('inventory.index')->with('success', 'Inventory updated successfully.');
+        return redirect()->route('inventories.index')->with('success', 'Inventory updated successfully.');
     }
 
     public function destroy(Inventory $inventory)
     {
         $inventory->delete();
-        return redirect()->route('inventory.index')->with('success', 'Inventory deleted successfully.');
+        return redirect()->route('inventories.index')->with('success', 'Inventory deleted successfully.');
     }
 
 
@@ -86,6 +88,10 @@ class InventoryController extends Controller
 
         $inventories = $query->latest()->get();
 
-        return view('inventori.print', compact('inventories'));
+        return view('inventory.print', [
+            'inventories' => $inventories,
+            'start' => $start ? date('d-m-Y', strtotime($start)) : null,
+            'end' => $end ? date('d-m-Y', strtotime($end)) : null
+        ]);
     }
 }

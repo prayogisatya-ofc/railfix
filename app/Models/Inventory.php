@@ -27,6 +27,11 @@ class Inventory extends Model
         'description',
     ];
 
+    public $casts = [
+        'date_in' => 'date',
+        'date_out' => 'date',
+    ];
+
     public function location()
     {
         return $this->belongsTo(Location::class);

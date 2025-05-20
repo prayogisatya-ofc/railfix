@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="pc-content">
-        <div class="page-header">
+        <div class="page-header m-0">
             <div class="page-block">
                 <div class="row align-items-center">
                     <div class="col-md-12">
@@ -36,7 +36,7 @@
                     @method('put')
                     <div>
                         <label class="form-label">Nama Lokasi <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control form-control-sm @error('name') is-invalid @enderror"
+                        <input type="text" class="form-control @error('name') is-invalid @enderror"
                             placeholder="Ex: Stasiun Rejosari" aria-label="Nama" aria-describedby="button-addon2"
                             name="name" value="{{ $location->name }}">
                         @error('name')

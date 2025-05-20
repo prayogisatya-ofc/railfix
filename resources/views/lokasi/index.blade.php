@@ -4,8 +4,7 @@
 
 @section('content')
     <div class="pc-content">
-        <!-- [ breadcrumb ] start -->
-        <div class="page-header">
+        <div class="page-header m-0">
             <div class="page-block">
                 <div class="row align-items-center">
                     <div class="col-md-12">
@@ -17,8 +16,6 @@
                 </div>
             </div>
         </div>
-        <!-- [ breadcrumb ] end -->
-        <!-- [ Main Content ] start -->
         <div class="row pt-2">
             <div class="col-md-12">
                 <h4 class="mb-3">Data Lokasi</h4>
@@ -31,10 +28,10 @@
                 <div class="card">
                     <div class="card-header ">
                         <form action="" method="get">
-                            <div class="row">
+                            <div class="row align-items-center">
                                 <div class="col-md-4 mb-3 mb-md-0">
                                     <div class="input-group">
-                                        <input type="search" class="form-control form-control-sm" placeholder="Cari"
+                                        <input type="search" class="form-control" placeholder="Cari"
                                             aria-label="Nama" aria-describedby="button-addon2" name="search"
                                             value="{{ $search }}">
                                         <button class="btn btn-outline-primary" type="submit"
@@ -50,7 +47,7 @@
                     </div>
                     <div class="card-body pt-0">
                         <div class="table-responsive">
-                            <table class="table table-hover mb-0">
+                            <table class="table table-hover text-nowrap mb-0">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -61,7 +58,7 @@
                                 <tbody>
                                     @foreach ($locations as $location)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ ($locations->currentPage() - 1) * $locations->perPage() + $loop->iteration }}</td>
                                             <td>{{ $location->name }}</td>
                                             <td class="text-end">
                                                 <a href="{{ route('location.edit', $location->id) }}"

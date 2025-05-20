@@ -9,5 +9,5 @@ Route::resource('', DashboardController::class)->names('dashboard');
 
 Route::resource('locations', LocationController::class)->except('show')->names('location');
 
-Route::resource('inventories', InventoryController::class)->except('show')->names('inventory');
-Route::get('inventories/print', [InventoryController::class, 'print'])->name('inventory.print');
+Route::resource('inventories', InventoryController::class)->except('show')->names('inventories');
+Route::get('inventories/print', [InventoryController::class, 'print'])->name('inventories.print');
