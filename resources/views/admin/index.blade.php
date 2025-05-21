@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Admin')
+@section('title', 'admin')
 
 @section('content')
     <div class="pc-content">
@@ -19,30 +19,26 @@
         <div class="row pt-2">
             <div class="col-md-12">
                 <h4 class="mb-3">Data Admin</h4>
-
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible" role="alert">
                         {!! session('success') !!}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-
                 <div class="card">
                     <div class="card-header ">
-                        <form action="{{ route('admin.index') }}" method="get">
+                        <form action="" method="get">
                             <div class="row align-items-center">
                                 <div class="col-md-4 mb-3 mb-md-0">
                                     <div class="input-group">
                                         <input type="search" class="form-control" placeholder="Cari" aria-label="Nama"
-                                            aria-describedby="button-addon2" name="search" autocomplete="off"
-                                            value="{{ request('search') }}">
+                                            aria-describedby="button-addon2" name="search" value="">
                                         <button class="btn btn-outline-primary" type="submit"
                                             id="button-addon2">Search</button>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <a href="{{ route('admin.create') }}"
-                                        class="btn btn-primary float-start float-md-end">Tambah</a>
+                                    <a href="" class="btn btn-primary float-start float-md-end">Tambah</a>
                                 </div>
                             </div>
                         </form>
@@ -53,30 +49,25 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama</th>
-                                        <th>Username</th>
-                                        <th>Tanggal Dibuat</th>
-                                        <th>Tanggal Diperbarui</th>
+                                        <th>Nama </th>
+                                        <th>Email</th>
                                         <th class="text-end">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($users as $index => $user)
+                                    {{-- @foreach ($admins as $admin)
                                         <tr>
-                                            <td>{{ ($users->currentPage() - 1) * $users->perPage() + $loop->iteration }}
+                                            <td>{{ ($admins->currentPage() - 1) * $admins->perPage() + $loop->iteration }}
                                             </td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->username }}</td>
-                                            <td>{{ $user->created_at->format('d M Y, H:i') }}</td>
-                                            <td>{{ $user->updated_at->format('d M Y, H:i') }}</td>
-
+                                            <td>{{ $location->name }}</td>
                                             <td class="text-end">
-                                                <a href="{{ route('admin.edit', $user->id) }}"
-                                                    class="btn btn-sm btn-warning" title="Edit">
+                                                <a href="{{ route('admin.edit', $admin->id) }}"
+                                                    class="btn btn-sm btn-warning">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
-                                                <form action="{{ route('admin.destroy', $user->id) }}" method="POST"
-                                                    style="display:inline-block;" title="Hapus">
+
+                                                <form action="{{ route('admin.destroy', $admin->id) }}" method="POST"
+                                                    style="display:inline-block;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"
@@ -86,17 +77,11 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="4" class="text-center">Tidak ada data admin.</td>
-                                        </tr>
-                                    @endforelse
+                                    @endforeach --}}
                                 </tbody>
                             </table>
                         </div>
-                        <div class="mt-3">
-                            {{ $users->withQueryString()->links() }}
-                        </div>
+                        {{-- <div class="mt-3">{{ $locations->links() }}</div> --}}
                     </div>
                 </div>
             </div>
