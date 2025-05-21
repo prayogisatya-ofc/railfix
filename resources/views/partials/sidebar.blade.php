@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="{{ url('admin') }}" class="pc-link">
+                    <a href="{{ route('admin.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-user"></i></span>
                         <span class="pc-mtext">Data Admin</span>
                     </a>
