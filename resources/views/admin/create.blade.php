@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Admin')
+@section('title', 'Tambah Data')
 
 @section('content')
     <div class="pc-content">
@@ -10,21 +10,20 @@
                     <div class="col-md-12">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Data Admin</a></li>
-                            <li class="breadcrumb-item"><span>Tambah Admin</span></li>
+                            <li class="breadcrumb-item"><a href="{{ route('location.index') }}">Data Lokasi</a></li>
+                            <li class="breadcrumb-item"><span>Tambah Data</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="row mb-3 align-items-center pt-2">
             <div class="col-md-4">
-                <h4 class="mb-3 mb-md-0">Tambah Admin</h4>
+                <h4 class="mb-3 mb-md-0">Tambah Data</h4>
             </div>
             <div class="col-md-8">
                 <div class="float-start float-md-end">
-                    <a href="{{ route('admin.index') }}" class="btn btn-outline-secondary me-2">Kembali</a>
+                    <a href="" class="btn btn-outline-secondary me-2">Kembali</a>
                     <button type="submit" form="form-tambah" class="btn btn-primary">Tambah</button>
                 </div>
             </div>
@@ -32,32 +31,39 @@
 
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('admin.store') }}" method="POST" id="form-tambah">
+                <form action="" method="post" id="form-tambah">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Nama <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                            placeholder="Ex: Ardi Wibowo" value="{{ old('name') }}">
+                        <input type="search" class="form-control @error('name') is-invalid @enderror"
+                            placeholder="Ex: Stasiun Rejosari" aria-label="Nama" aria-describedby="button-addon2"
+                            name="name" value="">
                         @error('name')
-                            <small class="text-danger mt-1">{{ $message }}</small>
+                            <small class="text-danger mt-1" role="alert">
+                                {{ $message }}
+                            </small>
                         @enderror
                     </div>
-
                     <div class="mb-3">
-                        <label class="form-label">Username <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username"
-                            placeholder="Ex: ardiwibowo123" value="{{ old('username') }}">
-                        @error('username')
-                            <small class="text-danger mt-1">{{ $message }}</small>
+                        <label class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control @error('name') is-invalid @enderror"
+                            placeholder="Ex: abc@gmail.com" aria-label="Email" aria-describedby="button-addon2"
+                            name="name" value="">
+                        @error('name')
+                            <small class="text-danger mt-1" role="alert">
+                                {{ $message }}
+                            </small>
                         @enderror
                     </div>
-
-                    <div class="mb-3">
+                    <div >
                         <label class="form-label">Password <span class="text-danger">*</span></label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                            placeholder="********">
-                        @error('password')
-                            <small class="text-danger mt-1">{{ $message }}</small>
+                        <input type="password" class="form-control @error('name') is-invalid @enderror"
+                            placeholder="Ex: 123Stasiun" aria-label="Nama" aria-describedby="button-addon2"
+                            name="name" value="">
+                        @error('name')
+                            <small class="text-danger mt-1" role="alert">
+                                {{ $message }}
+                            </small>
                         @enderror
                     </div>
 
