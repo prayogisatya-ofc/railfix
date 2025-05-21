@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
@@ -12,3 +13,5 @@ Route::resource('locations', LocationController::class)->except('show')->names('
 Route::resource('inventories', InventoryController::class)->except('show')->names('inventories');
 
 Route::get('inventories/print', [InventoryController::class, 'print'])->name('inventories.print');
+
+Route::resource('admin', AdminController::class)->except('show')->names('admin');
