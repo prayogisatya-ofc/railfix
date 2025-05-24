@@ -19,11 +19,10 @@
         <div class="ms-auto">
             <ul class="list-unstyled">
                 <li class="dropdown pc-h-item header-user-profile">
-                    <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
-                        href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside"
-                        aria-expanded="false">
+                    <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                        role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
                         <img src="https://ui-avatars.com/api/?name=Kang+Admin" alt="user-image" class="user-avtar">
-                        <span>Kang Admin</span>
+                        <span>{{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header">
@@ -33,7 +32,7 @@
                                         class="user-avtar wid-35">
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h6 class="mb-1">Kang Admin</h6>
+                                    <h6 class="mb-1">{{ Auth::user()->name }}</h6>
                                     <span>Administrator</span>
                                 </div>
                                 <a href="#!" class="pc-head-link bg-transparent"><i
@@ -48,10 +47,15 @@
                             <i class="ti ti-user"></i>
                             <span>View Profile</span>
                         </a>
-                        <a href="#!" class="dropdown-item">
-                            <i class="ti ti-power"></i>
-                            <span>Logout</span>
-                        </a>
+                        <form id="logout-form" action="{{ route('logout_destroy') }}" method="POST">
+                            @csrf
+                            <a href="#" class="dropdown-item text-danger"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="ti ti-power"></i>
+                                <span>Logout</span>
+                            </a>
+                        </form>
+
                     </div>
                 </li>
             </ul>

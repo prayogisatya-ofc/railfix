@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Dashboard')
-    
+
 @section('content')
 <div class="pc-content">
     <!-- [ breadcrumb ] start -->
