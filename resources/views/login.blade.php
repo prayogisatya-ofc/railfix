@@ -59,9 +59,9 @@
                             @csrf
 
                             <div class="mb-3">
-                                <label for="username" class="form-label">Email or Username</label>
+                                <label for="username" class="form-label">Username</label>
                                 <input type="text" name="username" id="username" class="form-control"
-                                    placeholder="Enter your email or username" required autofocus>
+                                    placeholder="Enter your username" required autofocus>
                             </div>
 
                             <div class="mb-3">

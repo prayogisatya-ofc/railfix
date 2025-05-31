@@ -17,10 +17,12 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::create([
+            'name' => 'Admin IT',
+            'username' => 'admin',
+            'email_verified_at' => now(),
+            'password' => 'AdwinTnk4@7890',
+        ]);
 
         $this->call([
             InventorySeeder::class,
