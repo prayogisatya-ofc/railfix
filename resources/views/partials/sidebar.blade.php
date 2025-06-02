@@ -43,7 +43,7 @@
                     <i class="ti ti-news"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="{{ asset('pages/login.html') }}" class="pc-link">
+                    <a href="{{ route('find.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-search"></i></span>
                         <span class="pc-mtext">Find it</span>
                     </a>

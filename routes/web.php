@@ -5,11 +5,15 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\FindController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect()->route('login');
 });
+
+Route::get('/find', [FindController::class, 'index'])->name('find.index');
+Route::get('/find/search', [FindController::class, 'search'])->name('find.search');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [LoginController::class, 'index'])->name('login');
