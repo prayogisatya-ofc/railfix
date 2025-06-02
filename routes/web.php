@@ -12,8 +12,6 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/find', [FindController::class, 'index'])->name('find.index');
-Route::get('/find/search', [FindController::class, 'search'])->name('find.search');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -27,4 +25,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('inventories', InventoryController::class)->except('show')->names('inventories');
     Route::get('inventories/print', [InventoryController::class, 'print'])->name('inventories.print');
     Route::resource('admin', AdminController::class)->except('show')->names('admin');
+    Route::get('/find', [FindController::class, 'index'])->name('find.index');
 });

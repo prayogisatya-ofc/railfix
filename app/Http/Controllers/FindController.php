@@ -8,25 +8,16 @@ use Illuminate\Support\Collection;
 
 class FindController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $results = collect();
-        return view('find.index', compact('results'));
-    }
+        $q = $request->input('q');
 
-    public function search(Request $request)
-    {
-        $query = trim($request->input('q'));
+        $result = null;
 
-        if (empty($query)) {
-            $results = collect();
-        } else {
-            $results = Inventory::with('location')
-                ->where('code', 'like', "%$query%")
-                ->orWhere('name', 'like', "%$query%")
-                ->get();
+        if ($q) {
+            $result = Inventory::where('code',  $q)->first();
         }
 
-        return view('find.index', compact('results', 'query'));
+        return view('find.index', compact('result'));
     }
 }

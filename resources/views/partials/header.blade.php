@@ -35,19 +35,9 @@
                                     <h6 class="mb-1">{{ Auth::user()->name }}</h6>
                                     <span>Administrator</span>
                                 </div>
-                                <a href="#!" class="pc-head-link bg-transparent"><i
-                                        class="ti ti-power text-danger"></i></a>
                             </div>
                         </div>
-                        <a href="#!" class="dropdown-item">
-                            <i class="ti ti-edit-circle"></i>
-                            <span>Edit Profile</span>
-                        </a>
-                        <a href="#!" class="dropdown-item">
-                            <i class="ti ti-user"></i>
-                            <span>View Profile</span>
-                        </a>
-                        <form id="logout-form" action="{{ route('logout_destroy') }}" method="POST">
+                        <form id="logout-form" action="{{ route('logout_destroy') }}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin logout?')">
                             @csrf
                             <a href="#" class="dropdown-item text-danger"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
