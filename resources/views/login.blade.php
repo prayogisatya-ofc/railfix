@@ -43,11 +43,11 @@
                     <div class="card shadow">
                         <div class="card-body">
                             <div class="text-center mb-4">
-                            {{-- <img src="{{ asset('assets/images/logo-white.svg') }}" height="50" alt="logo"> --}}
-                            <h2 class="fw-bold text-primary mb-2" style="font-size: 1.75rem;">Railfix</h2>
-                            <p class="text-muted" style="font-size: 0.95rem;">Please sign in to continue</p>
+                                <img src="{{ asset('assets/images/logo.svg') }}" width="200" alt="logo">
+                                {{-- <h2 class="fw-bold text-primary mb-2" style="font-size: 1.75rem;">Railsfix</h2> --}}
+                                <p class="text-muted" style="font-size: 0.95rem;">Please sign in to continue</p>
 
-                        </div>
+                            </div>
 
                             @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -56,31 +56,31 @@
                             @endif
 
                             <form method="POST" action="{{ route('login_store') }}">
-                            @csrf
+                                @csrf
 
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" name="username" id="username" class="form-control"
-                                    placeholder="Enter your username" required autofocus>
-                            </div>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" name="username" id="username" class="form-control"
+                                        placeholder="Enter your username" required autofocus>
+                                </div>
 
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" id="password" class="form-control"
-                                    placeholder="Enter your password" required>
-                            </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" name="password" id="password" class="form-control"
+                                        placeholder="Enter your password" required>
+                                </div>
 
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="remember" name="remember">
-                                <label class="form-check-label" for="remember">
-                                    Remember me
-                                </label>
-                            </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                                    <label class="form-check-label" for="remember">
+                                        Remember me
+                                    </label>
+                                </div>
 
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </div>
-                        </form>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                </div>
+                            </form>
 
 
                             {{-- <div class="mt-3 text-center">
