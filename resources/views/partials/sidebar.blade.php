@@ -6,7 +6,7 @@
             </a>
         </div>
         <div class="navbar-content">
-            <ul class="pc-navbar">
+            <ul class="pc-navbar">                
                 <li class="pc-item {{ request()->routeIs('dashboard.index') ? 'active' : '' }}">
                     <a href="{{ route('dashboard.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-home"></i></span>

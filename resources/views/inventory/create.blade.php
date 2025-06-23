@@ -112,11 +112,11 @@
                                 <option value="">Pilih Status</option>
                                 @php
                                     $status = [
-                                        ['value' => 'received', 'text' => 'Received'],
-                                        ['value' => 'on_progress', 'text' => 'On Progress'],
-                                        ['value' => 'done', 'text' => 'Done'],
-                                        ['value' => 'returned', 'text' => 'Returned'],
-                                        ['value' => 'broken', 'text' => 'Broken'],
+                                        ['value' => 'received', 'text' => 'Masuk'],
+                                        ['value' => 'on_progress', 'text' => 'Dalam Progres'],
+                                        ['value' => 'done', 'text' => 'Selesai'],
+                                        ['value' => 'returned', 'text' => 'Dikembalikan'],
+                                        ['value' => 'broken', 'text' => 'Rusak'],
                                     ];
                                 @endphp
                                 @foreach ($status as $item)

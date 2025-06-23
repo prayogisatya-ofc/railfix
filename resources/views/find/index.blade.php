@@ -72,11 +72,11 @@
                                                         <td class="text-end pt-1">
                                                             @php
                                                                 $status = [
-                                                                    'received' => ['text' => 'Received', 'color' => 'secondary'],
-                                                                    'on_progress' => ['text' => 'On Progress', 'color' => 'warning'],
-                                                                    'done' => ['text' => 'Done', 'color' => 'success'],
-                                                                    'returned' => ['text' => 'Returned', 'color' => 'info'],
-                                                                    'broken' => ['text' => 'Broken', 'color' => 'danger']
+                                                                    'received' => ['text' => 'Masuk', 'color' => 'secondary'],
+                                                                    'on_progress' => ['text' => 'Dalam Progres', 'color' => 'warning'],
+                                                                    'done' => ['text' => 'Selesai', 'color' => 'success'],
+                                                                    'returned' => ['text' => 'Dikembalikan', 'color' => 'info'],
+                                                                    'broken' => ['text' => 'Rusak', 'color' => 'danger']
                                                                 ][$result->status];
                                                             @endphp
                                                             <span class="badge bg-{{ $status['color'] }}">{{ $status['text'] }}</span>

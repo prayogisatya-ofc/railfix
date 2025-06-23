@@ -15,7 +15,9 @@ class FindController extends Controller
         $result = null;
 
         if ($q) {
-            $result = Inventory::where('code',  $q)->first();
+            $result = Inventory::where('code',  $q)
+                ->orWhere('serial_number',  $q)
+                ->first();
         }
 
         return view('find.index', compact('result'));

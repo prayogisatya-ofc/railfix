@@ -53,4 +53,9 @@ class Inventory extends Model
             $model->code = 'WS' . str_pad($number, 5, '0', STR_PAD_LEFT);
         });
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

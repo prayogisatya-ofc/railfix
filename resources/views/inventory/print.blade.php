@@ -69,11 +69,11 @@
                     <td class="text-center">
                         @php
                             $status = [
-                                'received' => ['text' => 'Received'],
-                                'on_progress' => ['text' => 'On Progress'],
-                                'done' => ['text' => 'Done',],
-                                'returned' => ['text' => 'Returned'],
-                                'broken' => ['text' => 'Broken']
+                                'received' => ['text' => 'Masuk'],
+                                'on_progress' => ['text' => 'Dalam Progres'],
+                                'done' => ['text' => 'Selesai',],
+                                'returned' => ['text' => 'Dikembalikan'],
+                                'broken' => ['text' => 'Rusak']
                             ][$inventory->status];
                         @endphp
                         {{ $status['text'] }}

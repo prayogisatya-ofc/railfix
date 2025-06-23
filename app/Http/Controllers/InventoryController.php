@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\InventoriesExport;
 use App\Http\Requests\InventoryRequest;
 use App\Models\Inventory;
 use App\Models\Location;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InventoryController extends Controller
 {
@@ -93,5 +95,13 @@ class InventoryController extends Controller
             'start' => $start ? date('d-m-Y', strtotime($start)) : null,
             'end' => $end ? date('d-m-Y', strtotime($end)) : null
         ]);
+    }
+
+    public function export(Request $request)
+    {
+        $start = $request->input('start_date');
+        $end = $request->input('end_date');
+
+        return Excel::download(new InventoriesExport($start, $end), 'Laporan Inventori.xlsx');
     }
 }
