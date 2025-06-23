@@ -8,4 +8,4 @@ use Illuminate\Support\Facades\Schedule;
 //     $this->comment(Inspiring::quote());
 // })->purpose('Display an inspiring quote');
 
-Schedule::command('notif:check-inventory')->everyTenMinutes();
+Schedule::command('notif:check-inventory')->hourly();
