@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Mantis Bootstrap 5 Admin Template">
-    <meta name="keywords" content="Mantis, Dashboard, Bootstrap 5, Admin Template">
-    <meta name="author" content="CodedThemes">
+    <meta name="description" content="Aplikasi Website Pencatatan Inventory Perbaikan IT PT. KAI Divre 4 Tanjungkarang">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon">
