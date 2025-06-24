@@ -50,7 +50,7 @@
                                             <div class="simplebar-content" style="padding: 16px 0px;">
                                                 <div class="list-group list-group-flush w-100">
                                                     @php
-                                                        $notifications = \App\Models\Notification::select('id', 'inventory_id', 'is_read')
+                                                        $notifications = \App\Models\Notification::select('id', 'inventory_id', 'is_read', 'title', 'type')
                                                             ->with('inventory')
                                                             ->latest()->limit(5)->get();
                                                     @endphp
@@ -59,17 +59,8 @@
                                                             <div class="d-flex">
                                                                 <div class="flex-grow-1 ms-1">
                                                                     <span class="float-end text-muted">{{ $notif->inventory->date_in->format('d-m-Y') }}</span>
-                                                                    <p class="text-body mb-1">{{ $notif->inventory->name }}</p>
-                                                                    @php
-                                                                        $status = [
-                                                                            'received' => ['text' => 'Masuk', 'color' => 'secondary'],
-                                                                            'on_progress' => ['text' => 'Dalam Progres', 'color' => 'warning'],
-                                                                            'done' => ['text' => 'Selesai', 'color' => 'success'],
-                                                                            'returned' => ['text' => 'Dikembalikan', 'color' => 'info'],
-                                                                            'broken' => ['text' => 'Rusak', 'color' => 'danger']
-                                                                        ][$notif->inventory->status];
-                                                                    @endphp
-                                                                    <span class="text-muted">{{ $notif->inventory->location->name }}</span> | <span class="fw-bold text-{{ $status['color'] }}">Barang {{ $status['text'] }}</span>
+                                                                    <p class="text-body mb-1">{{ $notif->title }}</p>
+                                                                    <span class="text-muted">{{ $notif->inventory->name }} | {{ $notif->inventory->location->name }}</span>
                                                                 </div>
                                                             </div>
                                                             <form action="{{ route('notifications.update', $notif->id) }}" method="post" id="form-read-{{ $notif->id }}">

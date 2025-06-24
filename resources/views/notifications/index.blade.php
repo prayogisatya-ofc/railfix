@@ -26,12 +26,11 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
-                                        <th>Kode Unik</th>
-                                        <th>Nama Barang</th>
-                                        <th>Barang dari</th>
+                                        <th>Judul</th>
                                         <th>Masuk</th>
                                         <th>Status barang</th>
                                         <th>Dibaca</th>
+                                        <th>Dibuat pada</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -39,9 +38,10 @@
                                     @forelse ($notifications as $notification)
                                         <tr>
                                             <td class="text-center">{{ ($notifications->currentPage() - 1) * $notifications->perPage() + $loop->iteration }}</td>
-                                            <td>{{ $notification->inventory->code }}</td>
-                                            <td>{{ $notification->inventory->name }}</td>
-                                            <td>{{ $notification->inventory->location->name }}</td>
+                                            <td>
+                                                <h5 class="mb-1">{{ $notification->title }}</h5>
+                                                <p class="mb-0">{{ $notification->inventory->name }} | {{ $notification->inventory->location->name }}</p>
+                                            </td>
                                             <td>{{ $notification->inventory->date_in->format('d-m-Y') }}</td>
                                             <td>
                                                 @php
@@ -51,11 +51,18 @@
                                                         'done' => ['text' => 'Selesai', 'color' => 'success'],
                                                         'returned' => ['text' => 'Dikembalikan', 'color' => 'info'],
                                                         'broken' => ['text' => 'Rusak', 'color' => 'danger']
-                                                    ][$notification->inventory->status];
+                                                    ][$notification->type];
                                                 @endphp
                                                 <span class="badge bg-{{ $status['color'] }}">{{ $status['text'] }}</span>
                                             </td>
-                                            <td>{{ $notification->is_read ? 'Sudah' : 'Belum' }}</td>
+                                            <td>
+                                                @if ($notification->is_read)
+                                                    <span class="badge bg-success">Dibaca</span>
+                                                @else
+                                                    <span class="badge bg-danger">Belum dibaca</span>
+                                                @endif
+                                            </td>
+                                            <td>{{ $notification->created_at->format('d M Y, H:i') }}</td>
                                             <td class="text-center">
                                                 <form action="{{ route('notifications.update', $notification->id) }}" method="POST" style="display:inline-block;">
                                                     @csrf

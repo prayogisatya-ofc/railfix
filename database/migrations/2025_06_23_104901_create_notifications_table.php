@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->foreignId('inventory_id')->constrained('inventories')->onDelete('cascade');
+            $table->enum('type', ['received', 'on_progress', 'done', 'returned', 'broken']);
             $table->boolean('is_read')->default(false);
             $table->timestamps();
         });

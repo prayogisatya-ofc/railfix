@@ -3,29 +3,65 @@
 namespace App\Console\Commands;
 
 use App\Models\Inventory;
+use App\Models\Notification;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class CheckInventoryNotifications extends Command
 {
     protected $signature = 'notif:check-inventory';
-    protected $description = 'Cek inventory yang belum diproses lebih dari 2 hari dan buat notifikasi';
+    protected $description = 'Cek inventory dan buat notifikasi jika belum diproses atau terlalu lama dalam progress';
 
     public function handle()
     {
-        $twoDaysAgo = Carbon::now()->subDays(2);
+        $now = now();
 
-        $inventories = Inventory::where('status', 'received')
-            ->where('date_in', '<=', $twoDaysAgo)
-            ->doesntHave('notifications')
-            ->get();
+        $receivedItems = Inventory::where('status', 'received')->get();
 
-        foreach ($inventories as $item) {
-            $item->notifications()->create([
-                'is_read' => false
-            ]);
+        foreach ($receivedItems as $item) {
+            $daysReceived = $item->date_in->diffInDays($now);
+
+            if ($daysReceived >= 2) {
+                $lastNotif = Notification::where('inventory_id', $item->id)
+                    ->where('type', 'received')
+                    ->latest()
+                    ->first();
+
+                if (!$lastNotif) {
+                    $this->createNotification($item, 'Mulai pekerjaanmu!');
+                } elseif ($lastNotif->is_read && $lastNotif->created_at->diffInDays($now) >= 1) {
+                    $this->createNotification($item, 'Mulai pekerjaanmu!');
+                }
+            }
         }
 
-        $this->info("Notifikasi berhasil diperbarui.");
+        $progressItems = Inventory::where('status', 'on_progress')->get();
+
+        foreach ($progressItems as $item) {
+            $daysProgress = $item->date_in->diffInDays($now);
+
+            if ($daysProgress >= 3) {
+                $existingUnread = Notification::where('inventory_id', $item->id)
+                    ->where('type', 'on_progress')
+                    ->where('is_read', false)
+                    ->exists();
+
+                if (!$existingUnread) {
+                    $this->createNotification($item, 'Selesaikan pekerjaanmu!');
+                }
+            }
+        }
+
+        $this->info('Notifikasi berhasil diperiksa.');
+    }
+
+    private function createNotification(Inventory $inventory, string $title): void
+    {
+        Notification::create([
+            'title' => $title,
+            'inventory_id' => $inventory->id,
+            'type' => $inventory->status,
+            'is_read' => false,
+        ]);
     }
 }

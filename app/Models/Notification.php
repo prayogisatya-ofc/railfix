@@ -9,7 +9,9 @@ class Notification extends Model
     protected $guarded = ['id'];
 
     protected $fillable = [
+        'title',
         'inventory_id',
+        'type',
         'is_read',
     ];
 
