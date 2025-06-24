@@ -41,12 +41,14 @@ class CheckInventoryNotifications extends Command
             $daysProgress = $item->date_in->diffInDays($now);
 
             if ($daysProgress >= 3) {
-                $existingUnread = Notification::where('inventory_id', $item->id)
+                $lastNotif = Notification::where('inventory_id', $item->id)
                     ->where('type', 'on_progress')
-                    ->where('is_read', false)
-                    ->exists();
+                    ->latest()
+                    ->first();
 
-                if (!$existingUnread) {
+                if (!$lastNotif) {
+                    $this->createNotification($item, 'Selesaikan pekerjaanmu!');
+                } elseif ($lastNotif->is_read && $lastNotif->created_at->diffInDays($now) >= 1) {
                     $this->createNotification($item, 'Selesaikan pekerjaanmu!');
                 }
             }
