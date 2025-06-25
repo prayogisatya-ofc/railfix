@@ -1,10 +1,11 @@
 <?php
 
+use App\Migrations\BaseMigration;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class extends BaseMigration
 {
     /**
      * Run the migrations.
@@ -12,12 +13,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cache', function (Blueprint $table) {
+            $this->setTableEngine($table);
             $table->string('key')->primary();
             $table->mediumText('value');
             $table->integer('expiration');
         });
 
         Schema::create('cache_locks', function (Blueprint $table) {
+            $this->setTableEngine($table);
             $table->string('key')->primary();
             $table->string('owner');
             $table->integer('expiration');

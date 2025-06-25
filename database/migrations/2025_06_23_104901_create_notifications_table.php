@@ -1,10 +1,11 @@
 <?php
 
+use App\Migrations\BaseMigration;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class extends BaseMigration
 {
     /**
      * Run the migrations.
@@ -12,6 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notifications', function (Blueprint $table) {
+            $this->setTableEngine($table);
             $table->id();
             $table->string('title');
             $table->foreignId('inventory_id')->constrained('inventories')->onDelete('cascade');
